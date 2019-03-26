@@ -5,7 +5,8 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
   
   <!-- Bag file path -->  
-  <arg name="bag_file" value="$(env HOME)/.segmap/kitti/2011_09_30_drive_18.bag"/>
+  <!-- <arg name="bag_file" value="$(env HOME)/.segmap/kitti/2011_09_30_drive_18.bag"/>-->
+  <arg name="bag_file" value="$(env HOME)/.segmap/190222/2019-02-22-16-16-19.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file)</rosparam>
 	
   <!-- Rviz visualization config file path -->
@@ -18,9 +19,9 @@
   <!-- rviz node -->
   <node name="visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
 
-  <node pkg="tf" type="static_transform_publisher" name="world_to_camera_init"  args="0 0 0 1.570795 0 1.570795 /world /camera_init 100" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_camera_init"  args="0 0 0 1.570795 0 1.570795 /world /camera_init 100" />
 
-  <node pkg="tf" type="static_transform_publisher" name="camera_to_lidar" args="0 0 0 -1.570795 -1.570795 0 camera velodyne 100" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_to_lidar" args="0 0 0 -1.570795 -1.570795 0 camera velodyne 100" /> -->
   
   <!-- CNN model path -->
   <arg name="cnn_model_path" value="$(env HOME)/.segmap/trained_models/segmap64/"/>
@@ -37,6 +38,6 @@
   </include>
   
   <!-- rosbag player node -->
-  <!-- <node name="player" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 \-\-clock \-\-pause $(arg bag_file)"/>	 -->
+  <node name="player" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 --clock --pause $(arg bag_file)"/>	
  
 </launch>

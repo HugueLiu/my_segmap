@@ -11,7 +11,10 @@ SegMapper: {
   LaserSlamWorker: {
     use_odometry_information: false,
     # use_odometry_information: true,
+
+    minimum_distance_to_add_pose: -1.0,
     
+
     odom_frame: "world",
     sensor_frame: "velodyne",
     

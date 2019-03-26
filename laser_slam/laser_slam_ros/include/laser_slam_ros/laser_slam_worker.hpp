@@ -79,6 +79,7 @@ class LaserSlamWorker {
  private:
   // Convert a tf::StampedTransform to a laser_slam::Pose.
   laser_slam::Pose tfTransformToPose(const tf::StampedTransform& tf_transform);
+  tf::StampedTransform poseTotfTransform(const laser_slam::Pose &pose);
   // TODO: common.hpp?
   laser_slam::SE3 geometryMsgTransformToSE3(const geometry_msgs::Transform& transform);
   geometry_msgs::Transform SE3ToGeometryMsgTransform(const laser_slam::SE3& transform);
@@ -162,6 +163,7 @@ class LaserSlamWorker {
   pcl::VoxelGrid<laser_slam_ros::PclPoint> voxel_filter_;
 
   tf::StampedTransform world_to_odom_;
+  tf::Transform last_transform_;
 
   static constexpr double kTimeout_s = 0.2;
   static constexpr unsigned int kScanSubscriberMessageQueueSize = 1u;
